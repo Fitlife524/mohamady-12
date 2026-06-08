@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ورود به پنل</title>
+
+<meta name=”viewport” content=”width=device-width, initial-scale=1.0”>
+
+<style>
+
+body{
+margin:0;
+font-family:tahoma;
+background:#f5f7fa;
+
+}
+
+.login-box{
+background:white;
+padding:30px;
+width:350px;
+border-radius:15px;
+box-shadow:0 4px 15px rgba(0,0,0,.1);
+text-align:center;
+margin: 80px auto;
+}
+
+h2{
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ddd;
+border-radius:8px;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#4CAF50;
+color:white;
+font-size:16px;
+cursor:pointer;
+
+}
+
+button:hover{
+opacity:.9;
+}
+footer{
+    text-align:center;
+    padding:20px;
+    margin-top: 40px;
+    background:#222;
+    color:white;
+}
+.side-menu a{
+display:block;
+padding:15px 25px;
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.side-menu a:hover{
+background:#333;
+
+}
+
+.menu-btn{
+font-size:32px;
+cursor:pointer;
+}
+
+.side-menu{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #222;
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 60px;
+    z-index: 999;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:linear-gradient(135deg,#81dd84,#89bde7);
+color:white;
+height: 70px;
+}
+
+
+.logo{
+
+font-size:22px;
+font-weight:bold;
+
+}
+nav a{
+color:white;
+text-decoration:none;
+margin:0 10px;
+font-weight:bold;
+}
+footer{
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+    background:#222;
+    color:white;
+}
+.result-card{
+    Margin-top:20px;
+    Padding:20px;
+    Border-radius:15px;
+    Box-shadow:0 4px 15px rgba(0,0,0,.1);
+    Text-align:center;
+    Transition:.3s;
+}
+.card{
+    background: white;
+    width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: rgba(0,0,0,.1);
+}
+
+Body{
+
+Margin:0;
+
+Font-family:tahoma;
+
+Min-height:100vh;
+
+Display:flex;
+
+Flex-direction:column;
+
+Background:linear-gradient(
+-45deg,
+#4CAF50,
+#2196F3,
+#81dd84,
+#89bde7
+);
+
+Background-size:400% 400%;
+
+Animation:gradientBG 12s ease infinite;
+
+}
+
+@keyframes gradientBG{
+
+0%{
+Background-position:0% 50%;
+}
+
+50%{
+Background-position:100% 50%;
+}
+
+100%{
+Background-position:0% 50%;
+}
+
+}
+.dark-btn{
+
+Font-size:28px;
+
+Cursor:pointer;
+
+Margin-right:15px;
+}
+.dark-mode{
+
+Background:#121212 !important;
+
+Color:white;
+
+}
+
+.dark-mode .stat-box,
+.dark-mode .feature-item,
+.dark-mode .card,
+.dark-mode .login-box{
+
+Background:#1e1e1e;
+
+Color:white;
+
+}
+
+.dark-mode footer{
+
+Background:#000;
+
+}
+
+.dark-mode input{
+
+Background:#333;
+
+Color:rgb(153, 69, 69);
+
+Border:1px solid #555;
+
+}
+
+@media (max-width: 600px) {
+
+  Body {
+    Padding: 10px;
+  }
+
+  .container {
+    Width: 100%;
+    Border-radius: 15px;
+    Padding: 20px;
+  }
+
+  H1 {
+    Font-size: 18px;
+  }
+
+  Input, select, button {
+    Font-size: 16px;
+    Padding: 12px;
+  }
+
+  #bodyImage {
+    Width: 100px;
+  }
+
+  .bmi-bar {
+    Flex-direction: column;
+  }
+
+  .bar {
+    Margin-bottom: 5px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    Max-width: 450px;
+  }
+
+  Button {
+    Font-size: 16px;
+  }
+}
+.container {
+  Width: 90%;
+  Max-width: 400px;
+}
+</style>
+</head>
+<body>
+    <header>
+    <div class="logo">FitLife</div>
+
+<div class="menu-btn" onclick="toggleMenu()">
+☰
+</div>
+</header>
+<div id="sidemenu" class="side-menu">
+
+<a href="javascript:void(0)" 
+onclick="toggleMenu()">✖</a>
+
+<a href="index.html">خانه</a>
+
+<a href="fitness.html">آزمون BMI</a>
+
+<a href="shop.html">فروشگاه</a>
+
+<a href="admin.html">پنل مدیریت</a>
+
+<a href="javascript:void(0)" onclick="toggleDark()">
+🌙دارک مود
+</a>
+
+<a href="login.html">ورود به پنل</a>
+
+</div>
+
+    <div class="login-box">
+        <h2>ورود به پنل کاربری</h2>
+        <input type="text" id="username" placeholder=" نام کاربری">
+        <input type="password" placeholder="رمز عبور">
+
+<button onclick="login()">
+ورود
+</button>
+</div>
+<script>
+if(
+    localStorage.getItem("theme") == 
+    "dark"){
+document.body.classList.add(
+    "dark-mode"
+)}
+function login(){
+
+    let username = 
+    document.getElementById("username").value;
+    
+    localStorage.setItem("username",username);
+
+
+window.location.href= 
+"dashboard.html"
+}
+function toggleMenu(){
+
+let menu =
+document.getElementById("sidemenu");
+
+if(menu.style.width=="250px"){
+menu.style.width="0";
+}
+else{
+
+menu.style.width="250px";
+
+}
+
+}
+function toggleDark(){
+document.body.classList.toggle(
+"dark-mode"
+);
+}
+function toggleDark(){
+document.body.classList.toggle(
+"dark-mode"
+);
+
+if(
+document.body.classList.contains(
+"dark-mode"
+)
+){
+localStorage.setItem(
+"theme",
+"dark"
+);
+}
+else{
+
+localStorage.setItem(
+"theme",
+"light"
+);
+}
+}
+</script>
+<footer>
+    © 2026 FitLife | طراحی توسط شما
+</footer>
+
+</body>
+</html>
+
