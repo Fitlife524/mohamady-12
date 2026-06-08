@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>فاکتور خرید</title>
+
+<style>
+Body{
+  Font-family:sans-serif;
+  Background:#f1f5f9;
+  Padding:20px;
+}
+
+.invoice{
+  Max-width:600px;
+  Margin:auto;
+  Background:white;
+  Padding:20px;
+  Border-radius:15px;
+  Box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+H2{
+  Text-align:center;
+  Color:#16a34a;
+}
+
+.item{
+  Display:flex;
+  Justify-content:space-between;
+  Padding:10px 0;
+  Border-bottom:1px solid #eee;
+}
+
+.total{
+  Text-align:center;
+  Margin-top:20px;
+  Font-size:18px;
+  Font-weight:bold;
+  Color:#0f172a;
+}
+
+.success{
+  Text-align:center;
+  Color:#16a34a;
+  Font-weight:bold;
+  Margin-bottom:15px;
+}
+
+Button{
+  Width:100%;
+  Padding:12px;
+  Margin-top:20px;
+  Border:none;
+  Border-radius:10px;
+  Background:#3b82f6;
+  Color:white;
+  Cursor:pointer;
+}
+.info{
+  Background:#f8fafc;
+  Padding:10px;
+  Border-radius:10px;
+  Margin-bottom:15px;
+  Font-size:14px;
+  Color:#334155;
+}
+
+.invoice button{
+  Width:100%;
+  Padding:12px;
+  Margin-top:10px;
+  Border:none;
+  Border-radius:10px;
+  Cursor:pointer;
+}
+
+.invoice button:first-of-type{
+  Background:#3b82f6;
+  Color:white;
+}
+
+.invoice button:last-of-type{
+  Background:#22c55e;
+  Color:white;
+}
+body{
+margin:0;
+font-family:tahoma;
+background:#f5f7fa;
+flex-direction: column;
+display: flex;
+min-height: 100vh;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:linear-gradient(135deg,#81dd84,#89bde7);
+color:white;
+}
+.logo{
+
+font-size:22px;
+font-weight:bold;
+
+}
+nav a{
+color:white;
+text-decoration:none;
+margin:0 10px;
+font-weight:bold;
+}
+    footer{
+    text-align:center;
+    padding:20px;
+    margin-top: auto;
+    background:#222;
+    color:white;
+}
+.side-menu a{
+display:block;
+padding:15px 25px;
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.side-menu a:hover{
+background:#333;
+}
+
+.menu-btn{
+font-size:32px;
+cursor:pointer;
+}
+
+.side-menu{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #222;
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 60px;
+    z-index: 999;
+}
+
+@keyframes gradientBG{
+
+0%{
+Background-position:0% 50%;
+}
+
+50%{
+Background-position:100% 50%;
+}
+
+100%{
+Background-position:0% 50%;
+}
+
+}
+.dark-btn{
+
+Font-size:28px;
+
+Cursor:pointer;
+
+Margin-right:15px;
+}
+.dark-mode{
+
+Background:#121212 !important;
+
+Color:white;
+
+}
+
+.dark-mode .stat-box,
+.dark-mode .feature-item,
+.dark-mode .card,
+.dark-mode .login-box{
+
+Background:#1e1e1e;
+
+Color:white;
+
+}
+
+.dark-mode footer{
+
+Background:#000;
+
+}
+
+.dark-mode input{
+
+Background:#333;
+
+Color:white;
+
+Border:1px solid #555;
+
+}
+@media print{
+    body{
+        background:white;
+    }
+    button{
+        display: none;
+    }
+    .invoice{
+        box-shadow: none;
+        border:none;
+    }
+}
+</style>
+</head>
+
+<body>
+      <header>
+    <h1>FitLife</h1>
+    <div class="menu-btn" onclick="toggleMenu()">
+☰
+</div>
+</div>
+
+</header>
+<div id="sidemenu" class="side-menu">
+
+<a href="javascript:void(0)" 
+onclick="toggleMenu()">✖</a>
+
+<a href="index.html">خانه</a>
+
+<a href="fitness.html">آزمون BMI</a>
+
+<a href="fitness.html">آزمون متابولیسم</a>
+
+<a href="shop.html">فروشگاه</a>
+
+<a href="javascript:void(0)" onclick="toggleDark()">
+🌙دارک مود
+</a>
+
+<a href="login.html">ورود به پنل</a>
+
+</div>
+ <div class="info">
+    <p>👤 نام: <span id="name"></span></p>
+    <p>📅 تاریخ: <span id="date"></span></p>
+    <p>🧾 شماره فاکتور: <span id="invoiceId"></span></p>
+  </div>
+
+  <div class="success">پرداخت موفق ✅</div>
+
+  <div id="items"></div>
+
+  <div class="total">
+    جمع کل: <span id="total">0</span> تومان
+  </div>
+
+  <button onclick="printInvoice()">🖨 چاپ فاکتور</button>
+  <a href="checkout.html">🏠 بازگشت</a>
+
+<script>
+if(
+    localStorage.getItem("theme") == 
+    "dark"){
+document.body.classList.add(
+    "dark-mode"
+)}
+function toggleMenu(){
+
+let menu =
+document.getElementById("sidemenu");
+
+if(menu.style.width=="250px"){
+menu.style.width="0";
+}
+else{
+
+menu.style.width="250px";
+
+}
+
+}
+function toggleDark(){
+document.body.classList.toggle(
+"dark-mode"
+);
+}
+function toggleDark(){
+document.body.classList.toggle(
+"dark-mode"
+);
+
+if(
+document.body.classList.contains(
+"dark-mode"
+)
+){
+localStorage.setItem(
+"theme",
+"dark"
+);
+}
+else{
+
+localStorage.setItem(
+"theme",
+"light"
+);
+}
+}
+
+function loadInvoice(){
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let box = document.getElementById("items");
+  let total = 0;
+
+  if(cart.length === 0){
+    box.innerHTML = "<p style='text-align:center'>سبد خرید خالی است</p>";
+    return;
+  }
+
+  cart.forEach(item => {
+
+    let qty = item.qty || 1;
+    total += item.price * qty;
+
+    box.innerHTML += `
+      <div class=”item”>
+        <span>${item.name} × ${qty}</span>
+        <span>${item.price * qty} تومان</span>
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText = total;
+
+  // بعد از ساخت فاکتور، سبد پاک شود
+  iocalStorage.removeItem("cart");
+}
+
+function goHome(){
+  window.location.href = "index.html";
+}
+function printInvoice(){
+    window.point();
+}
+renderCart();
+ioadInvoice();
+</script>
+<footer>
+    © 2026 FitLife | طراحی توسط شما
+</footer>
+</body>
+</html>
+
