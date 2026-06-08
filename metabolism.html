@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<title>آزمون متابولیسم</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+body{
+margin:0;
+font-family:tahoma;
+background:#f5f7fa;
+flex-direction: column;
+display: flex;
+min-height: 100vh;
+}
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:linear-gradient(135deg,#81dd84,#89bde7);
+color:white;
+}
+.logo{
+
+font-size:22px;
+font-weight:bold;
+
+}
+nav a{
+color:white;
+text-decoration:none;
+margin:0 10px;
+font-weight:bold;
+}
+.metabolism-box{
+  background: #fff;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+.metabolism-box h2{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.metabolism-box select{
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border-bottom: 15px;
+  border:  1px solid #ccc;
+}
+
+.metabolism-box button{
+  width: 100%;
+  padding: 12px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+#metabolismResult{
+  margin-top: 15px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.metabolism-box button:hover{
+  opacity: 0.9;
+}
+.metabolism-bar{
+  width: 100%;
+  height: 25px;
+  background: #ddd;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-top: 15px;
+}
+#metabolismFill{
+  height: 100%;
+  width: 0%;
+  transition: 1s;
+  border-radius: 20px;
+}
+footer{
+    text-align:center;
+    padding:20px;
+    margin-top: auto;
+    background:#222;
+    color:white;
+}
+.side-menu a{
+display:block;
+padding:15px 25px;
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.side-menu a:hover{
+background:#333;
+}
+
+.menu-btn{
+font-size:32px;
+cursor:pointer;
+}
+
+.side-menu{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #222;
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 60px;
+    z-index: 999;
+}
+
+Body{
+
+Margin:0;
+
+Font-family:tahoma;
+
+Min-height:100vh;
+
+Display:flex;
+
+Flex-direction:column;
+
+Background:linear-gradient(
+-45deg,
+#4CAF50,
+#2196F3,
+#81dd84,
+#89bde7
+);
+
+Background-size:400% 400%;
+
+Animation:gradientBG 12s ease infinite;
+
+}
+
+@keyframes gradientBG{
+
+0%{
+Background-position:0% 50%;
+}
+
+50%{
+Background-position:100% 50%;
+}
+
+100%{
+Background-position:0% 50%;
+}
+
+}
+.dark-btn{
+
+Font-size:28px;
+
+Cursor:pointer;
+
+Margin-right:15px;
+}
+.dark-mode{
+
+Background:#121212 !important;
+
+Color:white;
+
+}
+
+.dark-mode .stat-box,
+.dark-mode .feature-item,
+.dark-mode .card,
+.dark-mode .login-box{
+
+Background:#1e1e1e;
+
+Color:white;
+
+}
+
+.dark-mode footer{
+
+Background:#000;
+
+}
+
+.dark-mode input{
+
+Background:#333;
+
+Color:white;
+
+Border:1px solid #555;
+
+}
+
+.intro{
+    text-align: center;
+    line-height: 2;
+    color: #555;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+</style>
+</head>
+<body>
+    <header>
+<div class="logo">FitLife</div>
+<div class="menu-btn" onclick="toggleMenu()">
+☰
+</div>
+</header>
+<div id="sidemenu" class="side-menu">
+<a href="javascript:void(0)" 
+onclick="toggleMenu()">✖</a>
+
+<a href="index.html">خانه</a>
+
+<a href="fitness.html">آزمون BMI</a>
+
+<a href="metabolism.html">آزمون متابولیسم</a>
+
+<a href="shop.html">فروشگاه</a>
+
+<a href="javascript:void(0)" onclick="toggleDark()">
+🌙دارک مود
+</a>
+
+<a href="login.html">ورود به پنل</a>
+
+</div>
+<div class="metabolism-box">
+  <h2>ازمون متابولیسم بدن</h2>
+    <p class="intro">
+         این ازمون به صورت تقریبی وضعیت متابولیسم 
+         شما را بر اساس سطح فعالیت روزانه میزان انرژی ونحوه تغییر وزن بررسی میکند.
+          نتیجه این ازمون جنبه اموزشی دارد و جایگزین نظرپزشک یا متخصص تغذیه نیست
+    </p>
+  <label>میزان فعالیت روزانه</label>
+  <select id="activity">
+  <option value="1">کم</option>
+  <option value="2">متوسط</option>
+  <option value="3">زیاد</option>
+  </select>
+
+  <label>ایا به راحتی وزن اضافه میکنید؟</label>
+  <select id="weightGain">
+  <option value="1">بله</option>
+  <option value="3">خیر</option>
+  </select>
+
+ <label>سطح انرژی شما در طول روز چقدر است؟</label>
+  <select id="energy">
+  <option value="1">کم</option>
+  <option value="2">متوسط</option>
+  <option value="3">زیاد</option>
+  </select>
+
+  <button onclick="metabolismTest()">
+    محاسبه متابولیسم
+  </button>
+  <p id="metabolismResult"></p>
+
+  <div class="metabolism-bar">
+    <div id="metabolismFill"></div>
+  </div>
+</div>
+<script>
+if(
+    localStorage.getItem("theme") == 
+    "dark"){
+document.body.classList.add(
+    "dark-mode"
+)}
+function toggleMenu(){
+let menu =
+document.getElementById("sidemenu");
+if(menu.style.width=="250px"){
+menu.style.width="0";
+}
+else{
+menu.style.width="250px";
+}
+}
+function toggleDark(){ 
+document.body.classList.toggle(
+"dark-mode"
+);
+}
+function toggleDark(){
+document.body.classList.toggle(
+"dark-mode"
+);
+
+if(
+document.body.classList.contains(
+"dark-mode"
+)
+){
+localStorage.setItem(
+"theme",
+"dark"
+);
+}
+else{
+
+localStorage.setItem(
+"theme",
+"light"
+);
+} }
+function metabolismTest(){
+
+let score = 0;
+
+score += Number(document.getElementById("activity").value);
+score += Number(document.getElementById("weightGain").value);
+score += Number(document.getElementById("energy").value);
+
+let result = document.getElementById("metabolismResult");
+let fill = document.getElementById("metabolismFill");
+
+if(score <= 4){
+
+result.innerHTML = "🔴 متابولیسم شما کند است";
+
+fill.style.width = "33%";
+fill.style.background = "red";
+
+}
+else if(score <= 7){
+
+result.innerHTML = "🟠 متابولیسم شما متوسط است";
+
+fill.style.width = "66%";
+fill.style.background = "orange";
+
+}
+else{
+
+result.innerHTML = "🟢 متابولیسم شما سریع است";
+
+fill.style.width = "100%";
+fill.style.background = "green";
+
+}
+
+}
+loadComments();
+renderChart();
+</script>
+<footer>
+    © 2026 FitLife | طراحی توسط شما
+</footer>
+
+</body>
+</html>
